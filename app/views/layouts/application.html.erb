@@ -27,7 +27,7 @@
         
             <% elsif user_signed_in? %>
               <li class="nav-item mr-5">
-                <%= link_to 'マイページ', about_path, class: 'btn btn-custom ml-5' %>
+                <%= link_to 'マイページ', user_path(current_user.id), class: 'btn btn-custom ml-5' %>
               </li>
               <li class="nav-item">
                 <%= link_to 'ログアウト', destroy_user_session_path, class: 'btn btn-custom', method: :delete %>

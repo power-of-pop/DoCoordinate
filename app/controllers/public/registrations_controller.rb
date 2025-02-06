@@ -4,7 +4,7 @@ class Public::RegistrationsController < Devise::RegistrationsController
 
     # サインアップした遷移先
   def after_sign_up_path_for(resource)
-      mypage_users_path
+    user_path(current_user.id)
   end
 
   # before_action :configure_sign_up_params, only: [:create]
