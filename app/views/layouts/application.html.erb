@@ -20,15 +20,30 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
+              <% if admin_signed_in?  %>
               <li class="nav-item">
-                <%= link_to 'About', about_path, class: 'nav-link text-dark' %>
+                <%= link_to 'ログアウト', destroy_admin_session_path, class: 'btn btn-custom', method: :delete %>
+              </li>
+        
+            <% elsif user_signed_in? %>
+              <li class="nav-item mr-5">
+                <%= link_to 'マイページ', about_path, class: 'btn btn-custom ml-5' %>
               </li>
               <li class="nav-item">
-                <%= link_to "新規登録", about_path, class: 'nav-link text-dark' %>
+                <%= link_to 'ログアウト', destroy_user_session_path, class: 'btn btn-custom', method: :delete %>
+              </li>
+
+            <% else %>
+              <li class="nav-item mr-5">
+                <%= link_to 'About', about_path, class: 'btn btn-custom ml-5' %>
+              </li>
+              <li class="nav-item mr-5">
+                <%= link_to '新規登録', new_user_registration_path, class: 'btn btn-custom' %>
               </li>
               <li class="nav-item">
-                <%= link_to "ログイン", about_path, class: 'nav-link text-dark' %>
+                <%= link_to 'ログイン', new_user_session_path, class: 'nav-link text-dark' %>
               </li>
+            <% end %>
             </ul>
           </div>
         </div>
