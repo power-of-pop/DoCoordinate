@@ -1,10 +1,17 @@
 # frozen_string_literal: true
 
 class Public::RegistrationsController < Devise::RegistrationsController
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
     # サインアップした遷移先
   def after_sign_up_path_for(resource)
     user_path(current_user.id)
+  end
+
+  private
+  
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email, :encrypted_password])
   end
 
   # before_action :configure_sign_up_params, only: [:create]

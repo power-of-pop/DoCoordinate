@@ -1,26 +1,34 @@
 <div class='container px-5 px-sm-0'>
+<h2>User profile</h2>
   <div class='row'>
-    <div>
-      <h2>User profile</h2>
-
-        <%= image_tag @user.get_profile_image(100,100) %>
-          <table class='table'>
-            <tbody>
-              <tr>
-                <th>name</th>
-                <th><%= @user.name %></th>
-              </tr>
-              <tr>
-                <th>profile</th>
-                <th><%= @user.profile %></th>
-              </tr>
-            </tbody>
-          </table>
-
+    <div class="col-md-4">
+      <%= image_tag @user.get_profile_image(150,150) %>
     </div>
-    <div>
+    <div class="col-md-8">
+      <table class='table'>
+        <tbody>
+          <tr>
+            <th class="col-3">name</th>
+            <th class="col-9"><%= @user.name %></th>
+          </tr>
+          <tr>
+            <th class="col-3">profile</th>
+            <th class="col-9"><%= @user.profile %></th>
+          </tr>
+          <tr>
+            <th>
+              <% if current_user == @user %>
+                <%= link_to 'Edit',edit_user_path(@user), class: 'btn btn-success' %>
+              <% end %>
+            </th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+    <div class="row">
       <h2>Posts</h2>
-      <div class="row">
+      <div>
         <% @posts.each_slice(6) do |posts_row| %>
           <div class="row">
             <% posts_row.each do |post| %>
