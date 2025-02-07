@@ -10,7 +10,7 @@
       <%= form_with(model: @post, url: posts_path) do |form| %>
 
         <div class="form-group row">
-          <label for="image" class="col-sm-3 col-form-label">イメージ</label>
+          <label for="image" class="col-sm-3 col-form-label">写真</label>
           <div class="col-sm-8">
             <%= form.file_field :post_image, accept: "image/*", class: "form-control-file" %>
           </div>
@@ -31,7 +31,7 @@
         </div>
         <br>
         <div class = "submit row justify-content-center">
-          <%= form.submit submit_text, class: "btn btn-sm btn-success" %>
+          <%= form.submit "Post!", class: "btn btn-sm btn-success" %>
         </div>
       <% end %>
       <br>
