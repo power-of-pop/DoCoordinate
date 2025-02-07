@@ -1,1 +1,33 @@
-<h1>投稿一覧</h1>
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-md-3 space-above">
+      ジャンル一覧
+    </div>
+
+    <div class="col-md-8 offset-md-1">
+      <div class="row">
+        <span class = "title", style="font-size: 2.5rem; display:flex;">
+          <h1 class="bg-light">投稿一覧 </h1>
+        </span>
+      </div>
+      <br>
+      
+      <div class="row">
+        <% @posts.each_slice(4) do |posts_row| %>
+          <div class="row">
+            <% posts_row.each do |post| %>
+              <div class="col">
+                <p>
+                  <%= link_to post_path(post.id) do %>
+                    <%= image_tag url_for(post.post_image), size: "100x150" %>
+                  <% end %>
+                </p>
+                <p><%= link_to post.title, post_path(post) %></p>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,1 +1,41 @@
-<h1>マイページ</h1>
+<div class='container px-5 px-sm-0'>
+  <div class='row'>
+    <div>
+      <h2>User profile</h2>
+
+        <%= image_tag @user.get_profile_image(100,100) %>
+          <table class='table'>
+            <tbody>
+              <tr>
+                <th>name</th>
+                <th><%= @user.name %></th>
+              </tr>
+              <tr>
+                <th>profile</th>
+                <th><%= @user.profile %></th>
+              </tr>
+            </tbody>
+          </table>
+
+
+    </div>
+    <div>
+      <h2>Posts</h2>
+      <div class="row">
+        <% @posts.each_slice(6) do |posts_row| %>
+          <div class="row">
+            <% posts_row.each do |post| %>
+              <div class="col">
+                <p>
+                  <%= image_tag url_for(post.post_image), size: "100x150" %>
+                </p>
+                <p><%= post.title %></p>
+                <p><%= post.body %></p>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
