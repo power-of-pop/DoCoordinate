@@ -1,5 +1,5 @@
 <div class='container px-5 px-sm-0'>
-<h2>User profile</h2>
+<h2>My Page</h2>
   <div class='row'>
     <div class="col-md-4">
       <%= image_tag @user.get_profile_image(150,150) %>
@@ -8,41 +8,52 @@
       <table class='table'>
         <tbody>
           <tr>
-            <th class="col-3">name</th>
-            <th class="col-9"><%= @user.name %></th>
+            <th class="col-2 border-bottom">name</th>
+            <th class="col-10 border-bottom"><%= @user.name %></th>
           </tr>
           <tr>
-            <th class="col-3">profile</th>
-            <th class="col-9"><%= @user.profile %></th>
+            <th class="col-2 border-bottom">profile</th>
+            <th class="col-10 border-bottom"><%= @user.profile %></th>
           </tr>
           <tr>
             <th>
               <% if current_user == @user %>
-                <%= link_to 'Edit',edit_user_path(@user), class: 'btn btn-success' %>
+                <%= link_to 'Edit user info',edit_user_path(@user), class: 'btn btn-success' %>
               <% end %>
             </th>
+            <th>
+            <% if current_user == @user %>
+              <%= link_to 'New post',new_post_path, class: 'btn btn-info' %>
+            <% end %>
+          </th>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
     <div class="row">
-      <h2>Posts</h2>
-      <div>
-        <% @posts.each_slice(6) do |posts_row| %>
-          <div class="row">
-            <% posts_row.each do |post| %>
-              <div class="col">
-                <p>
-                  <%= image_tag url_for(post.post_image), size: "100x150" %>
-                </p>
-                <p><%= post.title %></p>
-                <p><%= post.body %></p>
-              </div>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
+      <table class='table table-borderless'>
+          <tbody>
+            <tr><h2>Posts</h2></tr>
+            <tr>
+            <th>
+              <% @posts.each_slice(6) do |posts_row| %>
+                <div class="row">
+                  <% posts_row.each do |post| %>
+                    <div class="col">
+                      <p>
+                        <%= image_tag url_for(post.post_image), size: "100x150" %>
+                      </p>
+                      <p><%= post.title %></p>
+                      <p><%= post.body %></p>
+                    </div>
+                  <% end %>
+                </div>
+              <% end %>
+            </th>
+            </tr>
+          </tbody>
+      </table>
     </div>
   </div>
 </div>
