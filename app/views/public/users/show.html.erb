@@ -42,10 +42,11 @@
                   <% posts_row.each do |post| %>
                     <div class="col">
                       <p>
-                        <%= image_tag url_for(post.post_image), size: "100x150" %>
+                        <%= link_to post_path(post.id) do %>
+                          <%= image_tag url_for(post.post_image), size: "150x200" %>
+                        <% end %>
                       </p>
-                      <p><%= post.title %></p>
-                      <p><%= post.body %></p>
+                      <p><%= link_to post.title, post_path(post) %></p>
                     </div>
                   <% end %>
                 </div>

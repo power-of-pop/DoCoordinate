@@ -4,10 +4,10 @@
       ジャンル一覧
     </div>
 
-    <div class="col-md-8 offset-md-1">
+    <div class="col-md-8">
       <div class="row">
         <span class = "title", style="font-size: 2.5rem; display:flex;">
-          <h1 class="bg-light">投稿一覧 </h1>
+          <h1 class="bg-light">Post Lists</h1>
         </span>
       </div>
       <br>
@@ -19,7 +19,7 @@
               <div class="col">
                 <p>
                   <%= link_to post_path(post.id) do %>
-                    <%= image_tag url_for(post.post_image), size: "100x150" %>
+                    <%= image_tag url_for(post.post_image), size: "150x200" %>
                   <% end %>
                 </p>
                 <p><%= link_to post.title, post_path(post) %></p>

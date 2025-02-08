@@ -22,7 +22,7 @@
             <ul class="navbar-nav ml-auto">
               <% if admin_signed_in?  %>
               <li class="nav-item">
-                <%= link_to 'ログアウト', destroy_admin_session_path, class: 'btn btn-custom', method: :delete %>
+                <%= link_to 'Log Out', destroy_admin_session_path, class: 'btn btn-custom', method: :delete %>
               </li>
         
             <% elsif user_signed_in? %>
@@ -30,13 +30,13 @@
                 <%= link_to 'My Page', user_path(current_user.id), class: 'btn btn-custom' %>
               </li>
               <li class="nav-item mr-5">
-                <%= link_to '投稿一覧', posts_path, class: 'btn btn-custom' %>
+                <%= link_to 'Post Lists', posts_path, class: 'btn btn-custom' %>
               </li>
               <li class="nav-item mr-5">
                 <%= link_to 'Community', about_path, class: 'btn btn-custom' %>
               </li>
               <li class="nav-item">
-                <%= link_to 'ログアウト', destroy_user_session_path, class: 'btn btn-custom', method: :delete %>
+                <%= link_to 'Log Out', destroy_user_session_path, class: 'btn btn-custom', method: :delete %>
               </li>
 
             <% else %>
@@ -44,10 +44,10 @@
                 <%= link_to 'About', about_path, class: 'btn btn-custom ml-5' %>
               </li>
               <li class="nav-item mr-5">
-                <%= link_to '新規登録', new_user_registration_path, class: 'btn btn-custom' %>
+                <%= link_to 'Sign Up', new_user_registration_path, class: 'btn btn-custom' %>
               </li>
               <li class="nav-item">
-                <%= link_to 'ログイン', new_user_session_path, class: 'nav-link text-dark' %>
+                <%= link_to 'Log In', new_user_session_path, class: 'nav-link text-dark' %>
               </li>
             <% end %>
             </ul>
