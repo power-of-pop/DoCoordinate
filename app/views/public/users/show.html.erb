@@ -15,18 +15,18 @@
             <th class="col-2 border-bottom">profile</th>
             <th class="col-10 border-bottom"><%= @user.profile %></th>
           </tr>
+          <% if @user.email != "guest@example.com" %>
+          <% if current_user == @user %>
           <tr>
             <th>
-              <% if current_user == @user %>
-                <%= link_to 'Edit user info',edit_user_path(@user), class: 'btn btn-success' %>
-              <% end %>
+              <%= link_to 'Edit user info',edit_user_path(@user), class: 'btn btn-success' %>
             </th>
             <th>
-            <% if current_user == @user %>
               <%= link_to 'New post',new_post_path, class: 'btn btn-info' %>
-            <% end %>
-          </th>
+            </th>
           </tr>
+          <% end %>
+          <% end %>
         </tbody>
       </table>
     </div>
