@@ -1,13 +1,11 @@
 <div class = "container">
-  <div class = "row-10">
-    <div class = "col">
-      <span class = "title bg-light" style="font-size: 2rem;"> New Coordinate </span>
-    </div>
-  </div>
 
   <div class = "row">
     <div class = "col-sm-12 col-md-8 col-lg-6 px-5 px-sm-0 mx-auto">
+      <span class = "title bg-light" style="font-size: 2rem;"> New Coordinate </span><br>
+
       <%= form_with(model: @post, url: posts_path) do |form| %>
+      <%= render 'layouts/errors', obj: @post %>
 
         <div class="form-group row">
           <label for="image" class="col-sm-3 col-form-label">写真</label>
@@ -17,14 +15,14 @@
         </div>
 
         <div class = "form-groupe row">
-          <label for"title", class="col-sm-3 col-form-label">タイトル</label>
+          <label for="title", class="col-sm-3 col-form-label">タイトル</label>
           <div class="col-sm-8">
             <%= form.text_field :title,placeholder:"タイトル", class:"form-control" %><br>
           </div>
         </div>
 
         <div class = "form-groupe row">
-          <label for"body", class="col-sm-3 col-form-label">説明文</label><br>
+          <label for="body", class="col-sm-3 col-form-label">説明文</label><br>
           <div class="col-sm-8">
             <%= form.text_area :body, placeholder:"ここに説明文を記述します", class:"form-control" %><br>
           </div>

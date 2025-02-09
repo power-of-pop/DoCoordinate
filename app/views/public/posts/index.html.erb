@@ -16,18 +16,24 @@
         <% @posts.each_slice(4) do |posts_row| %>
           <div class="row">
             <% posts_row.each do |post| %>
-              <div class="col">
-                <p>
+              <div class="col-md-3 mb-4"> <!-- 1行に4つの投稿 -->
+                <div class="card" style="height: 350px;">
                   <%= link_to post_path(post.id) do %>
-                    <%= image_tag url_for(post.post_image), size: "150x200" %>
+                    <%= image_tag url_for(post.post_image), class: "card-img-top", style: "height: 200px; width: 100%; object-fit: cover;" %>
                   <% end %>
-                </p>
-                <p><%= link_to post.title, post_path(post) %></p>
+                  <div class="card-body">
+                    <h5 class="card-title">
+                    <%= link_to truncate(post.title, length: 15, omission: '...'), post_path(post) %> 
+                      <!-- 30文字を超えた場合は「...」を付ける -->
+                    </h5>
+                  </div>
+                </div>
               </div>
             <% end %>
           </div>
         <% end %>
       </div>
+      
     </div>
   </div>
 </div>

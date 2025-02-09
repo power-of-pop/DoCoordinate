@@ -1,5 +1,5 @@
 <div class='container px-5 px-sm-0'>
-<h2>My Page</h2>
+<h2>User Page</h2>
   <div class='row'>
     <div class="col-md-4">
       <%= image_tag @user.get_profile_image(150,150) %>
@@ -9,11 +9,11 @@
         <tbody>
           <tr>
             <th class="col-2 border-bottom">name</th>
-            <th class="col-10 border-bottom"><%= @user.name %></th>
+            <th class="col-10 border-bottom text-wrap text-break"><%= @user.name %></th>
           </tr>
           <tr>
             <th class="col-2 border-bottom">profile</th>
-            <th class="col-10 border-bottom"><%= @user.profile %></th>
+            <th class="col-10 border-bottom text-wrap text-break"><%= @user.profile %></th>
           </tr>
           <% if @user.email != "guest@example.com" %>
           <% if current_user == @user %>
@@ -31,30 +31,26 @@
       </table>
     </div>
   </div>
+
+  <div class="row mt-4">
+    <h2 class="col-12 mb-4">Posts</h2>
     <div class="row">
-      <table class='table table-borderless'>
-          <tbody>
-            <tr><h2>Posts</h2></tr>
-            <tr>
-            <th>
-              <% @posts.each_slice(6) do |posts_row| %>
-                <div class="row">
-                  <% posts_row.each do |post| %>
-                    <div class="col">
-                      <p>
-                        <%= link_to post_path(post.id) do %>
-                          <%= image_tag url_for(post.post_image), size: "150x200" %>
-                        <% end %>
-                      </p>
-                      <p><%= link_to post.title, post_path(post) %></p>
-                    </div>
-                  <% end %>
-                </div>
+      <% @posts.each_slice(6) do |posts_row| %>
+        <% posts_row.each do |post| %>
+          <div class="col-md-3 mb-4">
+            <div class="card" style="width: 100%; height: auto;">
+              <%= link_to post_path(post.id) do %>
+                <%= image_tag url_for(post.post_image), class: "card-img-top", style: "height: 200px; width: 100%; object-fit: cover;" %>
               <% end %>
-            </th>
-            </tr>
-          </tbody>
-      </table>
+              <div class="card-body">
+                <h6 class="card-title"><%= link_to truncate(post.title, length: 15, omission: '...'), post_path(post) %></h6>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
     </div>
+  </div>
+</div>
   </div>
 </div>

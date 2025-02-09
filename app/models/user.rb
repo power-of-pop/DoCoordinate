@@ -1,12 +1,15 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+
+  validates :name, presence: true
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   
   has_one_attached :profile_image
 
   has_many :posts, dependent: :destroy
+
 
 
   def get_profile_image(width,height)
@@ -29,5 +32,7 @@ class User < ApplicationRecord
   def guest_user?
     email == GUEST_USER_EMAIL
   end
+
+
   
 end

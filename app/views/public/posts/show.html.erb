@@ -8,6 +8,11 @@
       <table class='table'>
         <tbody>
           <tr>
+            <% if @post.user %>
+              <th class="border-bottom"><%= link_to @post.user.name, user_path(@user) %></th>
+            <% end %>
+          </tr>
+          <tr>
             <th class="border-bottom"><%= @post.title %></th>
           </tr>
           <tr>
@@ -17,7 +22,7 @@
           <tr>
             <th>
               <%= link_to "Edit post", edit_post_path(@post), class: "btn btn-success", style: "margin-right: 30px;" %>
-              <%= link_to "Delete", post_path(@post), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+              <%= link_to "Delete", post_path(@post), method: :delete, data: { confirm: "本当に消去しますか？" }, class: "btn btn-danger" %>
             </th>
           </tr>
           <% end %>
