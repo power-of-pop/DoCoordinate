@@ -13,10 +13,10 @@
             <% end %>
           </tr>
           <tr>
-            <th class="border-bottom"><%= @post.title %></th>
+            <th class="border-bottom text-wrap text-break"><%= @post.title %></th>
           </tr>
           <tr>
-            <th class="border-bottom"><%= @post.body %></th>
+            <th class="border-bottom text-wrap text-break"><%= @post.body %></th>
           </tr>
           <% if @post.user == current_user %>
           <tr>

@@ -19,7 +19,7 @@
           <% if current_user == @user %>
           <tr>
             <th>
-              <%= link_to 'Edit user info',edit_user_path(@user), class: 'btn btn-success' %>
+              <%= link_to 'Edit info',edit_user_path(@user), class: 'btn btn-success' %>
             </th>
             <th>
               <%= link_to 'New post',new_post_path, class: 'btn btn-info' %>
