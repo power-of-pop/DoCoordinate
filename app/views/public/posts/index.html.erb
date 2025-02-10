@@ -7,23 +7,19 @@
         </span>
       </div>
       <br>
-      
+
       <div class="row">
-        <% @posts.each_slice(4) do |posts_row| %>
+        <% @posts.each_slice(5) do |posts_row| %>
           <div class="row">
             <% posts_row.each do |post| %>
               <div class="col">
-                <div class="card" style="height: 350px;">
+                <p>
                   <%= link_to post_path(post.id) do %>
-                    <%= image_tag url_for(post.post_image), class: "card-img-top", style: "height: 200px; width: 100%; object-fit: cover;" %>
+                    <%= image_tag url_for(post.post_image), size: "200x300" %>
                   <% end %>
-                  <div class="card-body">
-                    <h5 class="card-title">
-                    <%= link_to truncate(post.title, length: 15, omission: '...'), post_path(post) %> 
-                      <!-- 15文字を超えた場合は「...」を付ける -->
-                    </h5>
-                  </div>
-                </div>
+                </p>
+                <p><%= link_to truncate(post.title, length: 15, omission: '...'), post_path(post) %></p>
+                <!-- 15文字を超えた場合は「...」を付ける -->
               </div>
             <% end %>
           </div>
