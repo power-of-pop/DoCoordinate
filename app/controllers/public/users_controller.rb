@@ -1,6 +1,7 @@
 class Public::UsersController < ApplicationController
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :correct_user, only: [:show, :edit, :update, :destroy]
   before_action :ensure_guest_user, only: [:edit]
-  before_action :set_user, :only => [:show, :edit, :comments, :destroy]
 
   def show
     @user = User.find(params[:id])
@@ -26,7 +27,7 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id]) 
     @user.destroy
     flash[:notice] = '退会しました。'
-    redirect_to :root #削除後rootページに戻る
+    redirect_to new_user_registration_path
   end
 
   def user_params
@@ -35,6 +36,20 @@ class Public::UsersController < ApplicationController
 
   private
 
+  def correct_user
+    @user = User.find(params[:id])
+    redirect_to user_path(current_user) unless current_user == @user
+  end
+
+  def correct_user
+    @user = User.find_by(id: params[:id])
+    if @user.nil?
+      redirect_to user_path(current_user)
+    else
+      redirect_to user_path(current_user) unless current_user == @user
+    end
+  end
+
   def ensure_guest_user
     @user = User.find(params[:id])
     if @user.email == "guest@example.com"
@@ -42,7 +57,6 @@ class Public::UsersController < ApplicationController
     end
   end
 
-  private
   def set_user
      @user = User.find_by(:id => params[:id])
   end
