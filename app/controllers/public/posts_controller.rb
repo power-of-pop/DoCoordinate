@@ -65,7 +65,11 @@ class Public::PostsController < ApplicationController
 
   def correct_user
     @post = Post.find(params[:id])
-    redirect_to posts_path unless @post.user == current_user
+    if @post.nil?
+      redirect_to posts_path
+    else
+      redirect_to posts_path unless @post.user == current_user
+    end
   end
 
 end

@@ -37,11 +37,6 @@ class Public::UsersController < ApplicationController
   private
 
   def correct_user
-    @user = User.find(params[:id])
-    redirect_to user_path(current_user) unless current_user == @user
-  end
-
-  def correct_user
     @user = User.find_by(id: params[:id])
     if @user.nil?
       redirect_to user_path(current_user)
