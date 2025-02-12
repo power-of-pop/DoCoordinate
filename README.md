@@ -1,5 +1,5 @@
 README
-# Do コーディネート
+# Do Coordinate
 
 ## サイト概要
 

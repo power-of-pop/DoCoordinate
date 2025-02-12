@@ -1,0 +1,47 @@
+<table class="table table-hover mx-auto"style="max-width: 1100px;">
+  <div class="row mx-auto" style="max-width: 1000px;">
+    <!--検索対象モデルがUserの時 -->
+    <% if @range == "User" %>
+    <h2>Users search for "<%= @word %>"</h2>
+      <% @users.each do |user| %>
+        <thead>
+          <tr>
+            <th width="30%">image</th>
+            <th width="70%">name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <%= link_to user_path(user.id) do %>
+                <%= image_tag user.get_profile_image(100, 100) %>
+              <% end %>
+            </td>
+            <td><%= link_to user.name, user_path(user) %></td>
+          </tr>
+        </tbody>
+      <% end %>
+    <!--検索対象モデルがUserではない時(= 検索対象モデルがPostの時) -->
+    <% else %>
+    <h2>Posts search for "<%= @word %>"</h2>
+      <% @posts.each do |post| %>
+        <thead>
+          <tr>
+            <th width="30%">image</th>
+            <th width="70%">title</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <%= link_to post_path(post.id) do %>
+                <%= image_tag post.get_post_image(100, 100) %>
+              <% end %>
+            </td>
+            <td><%= link_to post.title , post_path(post.id) %></td>
+          </tr>
+        </tbody>
+      <% end %>
+    <% end %>
+  </div>
+</table>
