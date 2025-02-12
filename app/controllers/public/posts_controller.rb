@@ -20,6 +20,7 @@ class Public::PostsController < ApplicationController
       @posts = Post.all
       @users = User.all
       @user = @post.user
+      @post_comment = PostComment.new
     end
   end
 

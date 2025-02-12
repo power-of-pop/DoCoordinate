@@ -31,6 +31,33 @@
       <div>
         <%= link_to 'Back', posts_path, class: "back" %>
       </div>
+      <div>
+        <p>コメント件数：<%= @post.post_comments.count %></p>
+        <% @post.post_comments.each do |post_comment| %>
+          <div class="row mb-2 border-bottom">
+            <div class="col-2">
+              <%= image_tag post_comment.user.get_profile_image(50,50) %><br>
+              <%= link_to post_comment.user.name, user_path(@user) %>
+            </div>
+            <div class="col-6">
+              <%= post_comment.created_at.strftime('%Y/%m/%d') %><br>
+              <%= post_comment.comment %>
+            </div>
+            <div>
+
+              <% if post_comment.user == current_user %>
+                <%= link_to "delete", post_post_comment_path(post_comment.post, post_comment), method: :delete, data: { confirm: "本当に消去しますか？" }, class: "btn btn-danger" %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div>
+        <%= form_with model: [@post, @post_comment] do |f| %>
+          <%= f.text_area :comment, rows: '2', placeholder: "コメント" %>
+          <%= f.submit "send" %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
