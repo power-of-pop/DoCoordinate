@@ -1,0 +1,34 @@
+<h1>管理者側投稿一覧</h1>
+
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col">
+      <div class="row">
+        <span class = "title", style="font-size: 2.5rem; display:flex;">
+          <h1 class="bg-light">Post Lists</h1>
+        </span>
+      </div>
+      <br>
+
+      <div class="row">
+        <% @posts.each_slice(5) do |posts_row| %>
+          <div class="row">
+            <% posts_row.each do |post| %>
+              <div class="col">
+                <p>
+                  <%= link_to post_path(post.id) do %>
+                    <%= image_tag url_for(post.post_image), size: "200x300" %>
+                  <% end %>
+                </p>
+                <p><%= link_to truncate(post.title, length: 15, omission: '...'), post_path(post) %></p>
+                <!-- 15文字を超えた場合は「...」を付ける -->
+                <p><%= link_to "#{post.post_comments.count} コメント", post_path(post.id) %></p>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      
+    </div>
+  </div>
+</div>
