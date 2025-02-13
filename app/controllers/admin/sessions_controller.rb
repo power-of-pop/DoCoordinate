@@ -5,12 +5,12 @@ class Admin::SessionsController < Devise::SessionsController
 
     # ログインした遷移先
   def after_sign_in_path_for(resource)
-    root_path
+    admin_path
   end
 
     # ログアウトした遷移先
   def after_sign_out_path_for(resource)
-    sign_in_path
+    admin_session_path
   end
 
   protected
