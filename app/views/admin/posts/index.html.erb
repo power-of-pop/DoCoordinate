@@ -3,7 +3,7 @@
     <div class="col">
       <div class="row">
         <span class = "title", style="font-size: 2.5rem; display:flex;">
-          <h1 class="bg-light">Post List</h1>
+          <h1 class="bg-light">Post List(admin)</h1>
         </span>
       </div>
       <br>
@@ -14,13 +14,13 @@
             <% posts_row.each do |post| %>
               <div class="col">
                 <p>
-                  <%= link_to post_path(post.id) do %>
+                  <%= link_to admin_post_path(post.id) do %>
                     <%= image_tag url_for(post.post_image), size: "200x300" %>
                   <% end %>
                 </p>
-                <p><%= link_to truncate(post.title, length: 15, omission: '...'), post_path(post) %></p>
+                <p><%= link_to truncate(post.title, length: 15, omission: '...'), admin_post_path(post) %></p>
                 <!-- 15文字を超えた場合は「...」を付ける -->
-                <p><%= link_to "#{post.post_comments.count} コメント", post_path(post.id) %></p>
+                <p><%= link_to "#{post.post_comments.count} コメント", admin_post_path(post.id) %></p>
               </div>
             <% end %>
           </div>

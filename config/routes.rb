@@ -18,6 +18,11 @@ Rails.application.routes.draw do
   # 管理者側のルーティング
   namespace :admin do
     get '/' => 'homes#top'
+
+    resources :users, only: [:index, :show, :destroy]
+    resources :posts do
+      resources :post_comments, only: [:create, :destroy]
+    end
   end
 
   # ユーザー側のルーティング
@@ -29,7 +34,6 @@ Rails.application.routes.draw do
     resources :posts do
       resources :post_comments, only: [:create, :destroy]
     end
-
   end
 
   # 検索機能

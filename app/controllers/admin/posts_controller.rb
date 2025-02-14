@@ -1,15 +1,10 @@
-class Public::PostsController < ApplicationController
-  before_action :authenticate_user!, except: [:top, :about]
-  before_action :correct_user, only: [:edit]
-
-  def new
-    @post = Post.new
-  end
+class Admin::PostsController < ApplicationController
+  before_action :authenticate_admin!
 
   def index
     @posts = Post.all
     @post = Post.new
-    @users = @users = User.all
+    @users = User.all
     @user = current_user
   end
 
@@ -22,20 +17,6 @@ class Public::PostsController < ApplicationController
       @users = User.all
       @user = @post.user
       @post_comment = PostComment.new
-    end
-  end
-
-  def create
-    @post = Post.new(post_params)
-    @post.user_id = current_user.id
-    if @post.save
-      flash[:notice] = "正常に投稿されました。"
-      redirect_to post_path(@post)
-    else
-      @posts = Post.all
-      @users = User.all
-      @user = current_user
-      render :new
     end
   end
 
@@ -61,10 +42,15 @@ class Public::PostsController < ApplicationController
     post = Post.find(params[:id])
     post.destroy
     flash[:notice] = "投稿は消去されました。"
-    redirect_to user_path(post.user)
+    redirect_to admin_posts_path
   end
 
   private
+  def authenticate_admin!
+    # current_admin が存在し、かつ管理者でない場合にリダイレクト
+    redirect_to new_admin_session_path unless current_admin&.admin?
+  end
+
   def post_params
     params.require(:post).permit(:title, :body, :post_image)
   end
@@ -73,5 +59,5 @@ class Public::PostsController < ApplicationController
     @post = Post.find_by(id: params[:id])
     redirect_to posts_path if @post.nil? || @post.user != current_user
   end
-
+  
 end
