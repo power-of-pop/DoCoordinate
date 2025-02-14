@@ -1,10 +1,35 @@
-<h1 class="display-3 text-center about">About This Site</h1>
+<div class="container">
+  <div class="row d-flex justify-content-center mt-4">
+    <div class="col-10">
+      <div>
+        <h1><strong>About This Site</strong></h1>
+        <p>Do Coordinateは、ファッションに関するアドバイスや意見交換ができる場所を提供しています。<br>
+          トレンドアイテムの取り入れ方から、今手持ちの服をどう合わせればより魅力的に見せられるか、ビジネスシーンやフォーマルな場面（冠婚葬祭など）における服装選びに困っている方々に向けて、実践的なアドバイスを共有し合える場です。</p>
+      </div>
 
-<div class="text-center">
-  <h5><br>
-      このサイトはコーディネートについて意見交換ができます。<br>
-      正解のないファッションについて語り合ったり<br>
-      フォーマルなシーンでの服の選び方を教えあったり<br>
-      このサイトを通して、コーディネートが<br>
-      少しでも楽しくなりますように。</h5>
+      <div>
+        <h2><strong>Vision</strong></h2>
+        <p>Do Coordinateのビジョンは、ファッションを「自分らしさを表現するツール」として、誰でも気軽に楽しめるようにすることです。<br>
+          ファッションは、ただの見た目だけでなく、自己表現や自信にもつながります。<br>
+          だからこそ、Do Coordinateでは、ファッションに関する悩みやアイデアを気軽にシェアできる場を提供することで、より多くの人々が自分にぴったりのスタイルを見つけられることを望みます。</p>
+      </div>
+
+      <div>
+        <h2><strong>How To Use</strong></h2>
+        <p>参加はとても簡単です！</p>
+        <p>まずは<strong>会員登録</strong>をして、アカウントを作成してください。<br>
+          その後、他のユーザーの<strong>投稿にコメント</strong>をしたり、自分のコーディネート写真を<strong>投稿</strong>してアドバイスを求めたりできます。<br>
+          <strong>コミュニティ</strong>を作成したり、既存のコミュニティに参加することもできます。<br>
+          特定のトピック（トレンド、カジュアルコーデ、ビジネスコーデなど）に関連する質問を投稿して、様々なユーザーからフィードバックをもらうことができます。</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="m-4">
+        <h5><strong>今すぐ参加して、あなたのコーディネートをシェアしよう！</strong></h5>
+        <%= link_to 'Sign up',new_user_registration_path, class: "btn btn-success btn-sm btn-block sign_up" %>
+      </div>
+    </div>
+
+  </div>
 </div>
