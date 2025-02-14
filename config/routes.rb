@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   namespace :admin do
     get '/' => 'homes#top'
 
-    resources :users
+    resources :users, only: [:index, :show, :destroy]
     resources :posts do
       resources :post_comments, only: [:create, :destroy]
     end
@@ -34,7 +34,6 @@ Rails.application.routes.draw do
     resources :posts do
       resources :post_comments, only: [:create, :destroy]
     end
-
   end
 
   # 検索機能
