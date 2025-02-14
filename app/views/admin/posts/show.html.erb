@@ -1,0 +1,53 @@
+<div class="container px-5 px-sm-0">
+<h2>Post details</h2>
+  <div class="row">
+    <div class="col-5">
+        <%= image_tag url_for(@post.post_image), size: "300x450" %>
+    </div>
+    <div class="col-7">
+      <table class='table'>
+        <tbody>
+          <tr>
+            <% if @post.user %>
+              <th class="border-bottom"><%= link_to @post.user.name, admin_user_path(@user) %></th>
+            <% end %>
+          </tr>
+          <tr>
+            <th class="border-bottom text-wrap text-break"><%= @post.title %></th>
+          </tr>
+          <tr>
+            <th class="border-bottom text-wrap text-break"><%= @post.body %></th>
+          </tr>
+
+          <tr>
+            <th>
+              <%= link_to "Delete", admin_post_path(@post), method: :delete, data: { confirm: "本当に消去しますか？" }, class: "btn btn-danger" %>
+            </th>
+          </tr>
+
+        </tbody>
+      </table>
+      <div>
+        <%= link_to 'Back', admin_posts_path, class: "back" %>
+      </div>
+      <div>
+        <p>コメント件数：<%= @post.post_comments.count %></p>
+        <% @post.post_comments.each do |post_comment| %>
+          <div class="row mb-2 border-bottom">
+            <div class="col-2">
+              <%= image_tag post_comment.user.get_profile_image(50,50) %><br>
+              <%= link_to post_comment.user.name, admin_user_path(@user) %>
+            </div>
+            <div class="col-6">
+              <%= post_comment.created_at.strftime('%Y/%m/%d') %><br>
+              <%= post_comment.comment %>
+            </div>
+            <div>
+              <%= link_to "delete", admin_post_post_comment_path(post_comment.post, post_comment), method: :delete, data: { confirm: "本当に消去しますか？" }, class: "btn btn-danger" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

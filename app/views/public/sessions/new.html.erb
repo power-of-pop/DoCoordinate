@@ -4,7 +4,6 @@
       <h2 class="d-flex justify-content-center mt-4">Log in</h2>
 
         <%= form_with(model: resource, url: session_path(resource_name)) do |f| %>
-          <%= render "public/shared/error_messages", resource: resource %>
 
           <div class="field mb-2">
             <%= f.label :email %><br />

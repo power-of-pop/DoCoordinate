@@ -42,7 +42,7 @@ class Admin::PostsController < ApplicationController
     post = Post.find(params[:id])
     post.destroy
     flash[:notice] = "投稿は消去されました。"
-    redirect_to user_path(post.user)
+    redirect_to admin_posts_path
   end
 
   private

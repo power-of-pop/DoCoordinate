@@ -1,14 +1,28 @@
-<div class="container px-5 px-sm-0">
-  <div class="row">
-    <div class="col">
-      <div class="row">
-        <span class = "title", style="font-size: 2.5rem; display:flex;">
-          <h1 class="bg-light">Post List(admin)</h1>
-        </span>
-      </div>
-      <br>
+<div class='container px-5 px-sm-0'>
+<h2>User Page</h2>
+  <div class='row'>
+    <div class="col-md-4">
+      <%= image_tag @user.get_profile_image(150,150) %>
+    </div>
+    <div class="col-md-8">
+      <table class='table'>
+        <tbody>
+          <tr>
+            <th width="10%" class="border-bottom">name</th>
+            <td width="90%" class="border-bottom text-wrap text-break"><%= @user.name %></td>
+          </tr>
+          <tr>
+            <th class="border-bottom">profile</th>
+            <td class="border-bottom text-wrap text-break"><%= @user.profile %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 
-      <div class="row">
+  <div class="row mt-4">
+    <h2 class="col-12 mb-4">Posts</h2>
+    <div class="row">
         <% @posts.each_slice(5) do |posts_row| %>
           <div class="row">
             <% posts_row.each do |post| %>
@@ -26,7 +40,7 @@
           </div>
         <% end %>
       </div>
-      
-    </div>
+  </div>
+</div>
   </div>
 </div>
