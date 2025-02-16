@@ -15,9 +15,9 @@ class Post < ApplicationRecord
     post_image.variant(resize_to_limit: [width, height]).processed
   end
 
-  # 検索方法
+  # 検索方法:部分一致
   def self.looks(word)
-    Post.where("title LIKE?","#{word}")
+    Post.where("title LIKE?", "%#{word}%")
   end
 
 end

@@ -34,9 +34,9 @@ class User < ApplicationRecord
     email == GUEST_USER_EMAIL
   end
 
-  # 検索方法
+  # 検索方法:部分一致
   def self.looks(word)
-    User.where("name LIKE?", "#{word}")
+    User.where("name LIKE?", "%#{word}%")
   end
 
 
