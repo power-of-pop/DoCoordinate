@@ -5,7 +5,7 @@ class Admin::SessionsController < Devise::SessionsController
 
     # ログインした遷移先
   def after_sign_in_path_for(resource)
-    admin_path
+    admin_posts_path
   end
 
     # ログアウトした遷移先

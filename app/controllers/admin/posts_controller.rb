@@ -46,11 +46,6 @@ class Admin::PostsController < ApplicationController
   end
 
   private
-  def authenticate_admin!
-    # current_admin が存在し、かつ管理者でない場合にリダイレクト
-    redirect_to new_admin_session_path unless current_admin&.admin?
-  end
-
   def post_params
     params.require(:post).permit(:title, :body, :post_image)
   end

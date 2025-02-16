@@ -21,9 +21,13 @@
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
               <% if admin_signed_in?  %>
-                <li class="nav-item mr-5">
+                <%
+=begin%>
+ <li class="nav-item mr-5">
                   <%= link_to 'Top Page', admin_path, class: 'btn btn-custom' %>
-                </li>
+                </li> 
+<%
+=end%>
                 <li class="nav-item mr-5">
                   <%= link_to 'User List', admin_users_path, class: 'btn btn-custom' %>
                 </li>
