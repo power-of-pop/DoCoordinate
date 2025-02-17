@@ -8,7 +8,6 @@ class Public::GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
-    @user = User.find(params[:id])
   end
 
   def new
@@ -29,7 +28,7 @@ class Public::GroupsController < ApplicationController
   end
 
   def update
-    if group.update(group_params)
+    if @group.update(group_params)
       redirect_to groups_path
     else
       render "edit"
