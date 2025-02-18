@@ -25,6 +25,7 @@ class Public::GroupsController < ApplicationController
   end
 
   def edit
+    @group = Group.find(params[:id])
   end
 
   def update
@@ -41,6 +42,7 @@ class Public::GroupsController < ApplicationController
     params.require(:group).permit(:name, :introduction, :group_image)
   end
 
+  # コミュニティ作成者であるかを確認
   def ensure_correct_user
     @group = Group.find(params[:id])
     unless @group.owner_id = current_user.id
