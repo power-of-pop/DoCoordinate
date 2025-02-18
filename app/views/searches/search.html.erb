@@ -23,8 +23,8 @@
           </tbody>
         <% end %>
       <% end %>
-    <!--検索対象モデルがUserではない時(= 検索対象モデルがPostの時) -->
-    <% else %>
+    <!-- 検索対象モデルがPostの時 -->
+    <% elsif @range == "Post" %>
     <h2>Posts search for "<%= @word %>"</h2>
       <thead>
         <tr>
@@ -44,6 +44,26 @@
           </tr>
         </tbody>
       <% end %>
+    <!-- 検索対象モデルがGroupの時 -->
+    <% else %>
+      <thead>
+        <tr>
+          <th width="30%">image</th>
+          <th width="70%">name</th>
+        </tr>
+      </thead>
+      <tbody>
+          <% @groups.each do |group| %>
+            <tr>
+              <td>
+                <%= link_to group_path(group.id) do %>
+                  <%= image_tag group.get_group_image(100, 100) %>
+                <% end %>
+              </td>
+              <td><%= link_to group.name,group_path(group) %></td>
+            </tr>
+          <% end %>
+      </tbody>
     <% end %>
   </div>
 </table>
