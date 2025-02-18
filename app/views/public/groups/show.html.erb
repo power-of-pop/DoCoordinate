@@ -40,4 +40,31 @@
           </tr>
         </tbody>
       </table>
+
+
+<% if @group.group_users.exists?(user_id: current_user.id) %>
+  <%= link_to 'グループ退出', group_group_users_path(@group), method: :delete, class: "btn btn-sm btn-danger", data: { confirm: "本当にグループを退出しますか？" } %>
+<% elsif @group.permits.exists?(user_id: current_user.id) %>
+  <%= link_to '申請取消', group_permits_path(@group), method: :delete, class: "btn btn-sm btn-danger" %>
+<% else %>
+  <%= link_to '加入申請', group_permits_path(@group), method: :post, class: "btn btn-sm btn-success" %>
+<% end %>
+
+
+<% if @group.owner_id == current_user.id %>
+    <div class="dropdown">
+    <button class="btn btn-sm btn-secondary dropdown-toggle"
+            type="button" id="dropdownMenu1" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+      作成者専用
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+      <%= link_to "承認待ち一覧", permits_path(@group),  class: "dropdown-item text-secondary bg-transparent" %>  ⇦編集箇所
+      <%= link_to 'グループ編集', edit_group_path(@group),  class: "dropdown-item text-success bg-transparent" %>
+      <%= link_to 'グループ削除', group_path(@group), method: :delete,  class: "dropdown-item text-danger bg-transparent", data: { confirm: "本当に削除しますか？" } %>
+    </div>
+  </div>
+<% end %>
+
+
     </div>

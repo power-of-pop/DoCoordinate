@@ -30,11 +30,15 @@ Rails.application.routes.draw do
     root :to =>"homes#top"
     get "about" => "homes#about"
 
+    # コミュニティ参加申請車一覧
+    get "groups/:id/permits" => "groups#permits", as: :permits
+
     resources :users, only: [:edit, :show, :update, :destroy]
     resources :posts do
       resources :post_comments, only: [:create, :destroy]
     end
     resources :groups, only: [:new, :index, :show, :edit, :create, :update] do
+      resource :permits, only: [:create, :destroy]
       resource :group_users, only: [:create, :destroy]
     end
   end
