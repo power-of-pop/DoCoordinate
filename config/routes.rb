@@ -34,6 +34,9 @@ Rails.application.routes.draw do
     resources :posts do
       resources :post_comments, only: [:create, :destroy]
     end
+    resources :groups, only: [:new, :index, :show, :edit, :create, :update] do
+      resource :group_users, only: [:create, :destroy]
+    end
   end
 
   # 検索機能

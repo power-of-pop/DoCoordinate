@@ -6,8 +6,10 @@ class SearchesController < ApplicationController
 
     if @range == "Post"
       @posts = Post.looks(@word)
-    else
+    elsif @range == "User"
       @users = User.looks(@word)
+    else
+      @groups = Group.looks(@word)
     end
   end
 end

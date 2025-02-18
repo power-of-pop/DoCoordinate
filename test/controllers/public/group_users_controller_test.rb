@@ -1,6 +1,6 @@
 require "test_helper"
 
-class GroupCommentTest < ActiveSupport::TestCase
+class Public::GroupUsersControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end
