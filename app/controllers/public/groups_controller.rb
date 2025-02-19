@@ -18,6 +18,7 @@ class Public::GroupsController < ApplicationController
     @group = Group.new(group_params)
     @group.owner_id = current_user.id
     if @group.save
+      GroupUser.create(user_id: current_user.id, group_id: @group.id)
       redirect_to groups_path, method: :post
     else
       render "new"
@@ -36,9 +37,16 @@ class Public::GroupsController < ApplicationController
     end
   end
 
+  def destroy
+    group = Group.find(params[:id])
+    group.destroy
+    flash[:notice] = "コミュニティは消去されました。"
+    redirect_to groups_path
+  end
+
   def permits
     @group = Group.find(params[:id])
-    @permits = @group.permits.page(params[:page])
+    @permits = @group.permits
   end
 
   private
