@@ -33,6 +33,9 @@ Rails.application.routes.draw do
     # コミュニティ参加申請車一覧
     get "groups/:id/permits" => "groups#permits", as: :permits
 
+    # チャット画面
+    get "groups/:id/chat" => "groups#chat", as: :chat
+
     resources :users, only: [:edit, :show, :update, :destroy]
     resources :posts do
       resources :post_comments, only: [:create, :destroy]
@@ -44,6 +47,7 @@ Rails.application.routes.draw do
           post 'reject'
         end
       end
+      resource :chat, only: [:create, :destroy]
     end
   end
 
