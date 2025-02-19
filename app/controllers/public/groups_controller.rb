@@ -1,6 +1,6 @@
 class Public::GroupsController < ApplicationController
   before_action :authenticate_user!
-  before_action :ensure_correct_user, only: [:edit, :update]
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy, :permits]
 
   def index
     @groups = Group.all
@@ -18,6 +18,7 @@ class Public::GroupsController < ApplicationController
     @group = Group.new(group_params)
     @group.owner_id = current_user.id
     if @group.save
+      GroupUser.create(user_id: current_user.id, group_id: @group.id)
       redirect_to groups_path, method: :post
     else
       render "new"
@@ -36,6 +37,18 @@ class Public::GroupsController < ApplicationController
     end
   end
 
+  def destroy
+    group = Group.find(params[:id])
+    group.destroy
+    flash[:notice] = "コミュニティは消去されました。"
+    redirect_to groups_path
+  end
+
+  def permits
+    @group = Group.find(params[:id])
+    @permits = @group.permits
+  end
+
   private
 
   def group_params
@@ -46,7 +59,7 @@ class Public::GroupsController < ApplicationController
   def ensure_correct_user
     @group = Group.find(params[:id])
     unless @group.owner_id = current_user.id
-      redirect_to groups_path
+      redirect_to group_path(@group), alert: "作成者のみ編集が可能です。"
     end
   end
 end
