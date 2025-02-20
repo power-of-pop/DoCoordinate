@@ -5,13 +5,11 @@ class Public::GroupChatsController < ApplicationController
   def create
     @group_chat = @group.group_chats.build(group_chat_params)
     @group_chat.user = current_user
-
-    if @group_chat.save
-      redirect_to group_chat_path(@group), notice: 'メッセージが送信されました。'
-    else
-      render :chat
-    end
+    @group_chat.save
+    redirect_to group_chat_path(@group), notice: 'メッセージが送信されました。'
   end
+
+
 
   def destroy
     @group_chat = @group.group_chats.find(params[:id])
@@ -26,7 +24,7 @@ class Public::GroupChatsController < ApplicationController
   end
 
   def group_chat_params
-    params.require(:group_chat).permit(:comment, :image)
+    params.require(:group_chat).permit(:comment, :chat_image)
   end
 
 end
