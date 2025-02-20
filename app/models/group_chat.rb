@@ -4,6 +4,8 @@ class GroupChat < ApplicationRecord
 
   has_one_attached :chat_image
 
+  validates :comment, presence: true
+
   def get_chat_image(width,height)
     unless chat_image.attached?
       file_path = Rails.root.join('app/assets/images/no_image_471.png')

@@ -34,7 +34,7 @@ Rails.application.routes.draw do
     get "groups/:id/permits" => "groups#permits", as: :permits
 
     # チャット画面
-    get "groups/:id/chat" => "groups#chat", as: :chat
+    get "groups/:id/chat" => "groups#chat", as: :group_chat
 
     resources :users, only: [:edit, :show, :update, :destroy]
     resources :posts do
@@ -47,7 +47,7 @@ Rails.application.routes.draw do
           post 'reject'
         end
       end
-      resource :chat, only: [:create, :destroy]
+      resources :group_chats, only: [:create, :destroy]
     end
   end
 
