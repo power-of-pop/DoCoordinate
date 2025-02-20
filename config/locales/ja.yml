@@ -12,6 +12,8 @@ ja:
         post_image: "写真"
         title: "タイトル"
         body: "説明文"
+      post_comment:
+        comment: "コメント"
   errors:
     format: "%{attribute}%{message}"
   date:
