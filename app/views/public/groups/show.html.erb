@@ -50,7 +50,9 @@
                 </div>
               <% end %>
 
-              <%= link_to "チャット",group_chat_path(@group), class: "btn btn-outline-dark text-dark" %>
+              <% if @group.group_users.exists?(user_id: current_user.id) %>
+                <%= link_to "チャット",group_chat_path(@group), class: "btn btn-outline-dark text-dark" %>
+              <% end %>
             </td>
           </tr>
         </tbody>

@@ -47,6 +47,7 @@ class Public::GroupsController < ApplicationController
   def permits
     @group = Group.find(params[:id])
     @permits = @group.permits
+    @user = User.find(params[:id])
   end
 
   def chat
@@ -54,6 +55,7 @@ class Public::GroupsController < ApplicationController
     @group_chat = GroupChat.new
     @users = @group.users # グループに所属するユーザーを取得
     @group_chats = @group.group_chats.includes(:user).order(created_at: :asc) # コメントを新しい順に取得
+    @user = User.find(params[:id])
   end
   
 

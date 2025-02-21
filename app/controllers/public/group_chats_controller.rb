@@ -3,8 +3,9 @@ class Public::GroupChatsController < ApplicationController
   before_action :set_group
 
   def create
-    @group_chat = @group.group_chats.build(group_chat_params)
-    @group_chat.user = current_user
+    @group = Group.find(params[:group_id])
+    @group_chat = current_user.group_chats.new(group_chat_params)
+    @group_chat.group_id = @group.id
 
     if @group_chat.save
       redirect_to group_chat_path(@group), notice: '送信されました。'

@@ -10,7 +10,8 @@
         <tbody>
           <tr>
             <% if @post.user %>
-              <th class="border-bottom"><%= link_to @post.user.name, user_path(@user) %></th>
+              <th class="border-bottom">
+              <%= link_to @post.user.name, user_path(@post.user) %></th>
             <% end %>
           </tr>
           <tr>
