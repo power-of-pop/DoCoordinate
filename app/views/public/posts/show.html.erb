@@ -1,4 +1,4 @@
-
+<%= render 'layouts/errors', obj: @post_comment %>
 <div class="container px-5 px-sm-0">
 <h2>Post details</h2>
   <div class="row">
@@ -10,8 +10,7 @@
         <tbody>
           <tr>
             <% if @post.user %>
-              <th class="border-bottom">
-              <%= link_to @post.user.name, user_path(@post.user) %></th>
+              <th class="border-bottom"><%= link_to @post.user.name, user_path(@post.user) %></th>
             <% end %>
           </tr>
           <tr>
@@ -57,7 +56,7 @@
         <% end %>
       </div>
       <div>
-      <%= render 'layouts/errors', obj: @post_comment %>
+      
         <%= form_with model: [@post, @post_comment] do |f| %>
           <%= f.text_area :comment, rows: '2', placeholder: "コメント" %>
           <%= f.submit "send" %>
