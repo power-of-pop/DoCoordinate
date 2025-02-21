@@ -14,8 +14,6 @@ class Public::PostCommentsController < ApplicationController
 
   end
 
-  
-
   def destroy
     PostComment.find(params[:id]).destroy
     redirect_to post_path(params[:post_id]), notice: '削除されました。'

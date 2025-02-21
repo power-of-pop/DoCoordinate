@@ -1,0 +1,43 @@
+<%= render 'layouts/errors', obj: @group_chat %>
+  <div class="container">
+    <h2>Group chat in "<%= @group.name %>"</h2>
+    <!-- グループチャットのメッセージを表示 -->
+    <div class="chat-box mb-4" style="max-height: 400px; overflow-y: auto;">
+      <% @group.group_chats.each do |group_chat| %>
+        <div class="message-row d-flex mb-3 <%= 'my-message' if group_chat.user == current_user %>">
+          <!-- ユーザー画像 -->
+          <div class="user-image me-3">
+            <%= image_tag group_chat.user.get_profile_image(50, 50), class: "rounded-circle" %>
+          </div>
+
+          <!-- メッセージ内容 -->
+          <div class="message-content flex-grow-1">
+            <div class="d-flex justify-content-between">
+              <div class="user-name fw-bold">
+                <%= link_to group_chat.user.name, admin_user_path(@user) %>
+              </div>
+              <div class="message-time text-muted small">
+                <%= group_chat.created_at.strftime('%Y/%m/%d %H:%M') %>
+              </div>
+            </div>
+            <% if group_chat.comment.present? %>
+              <div class="message-text bg-light p-2 rounded mt-1">
+                <%= group_chat.comment %>
+              </div>
+            <% end %>
+
+            <!-- 画像があれば表示 -->
+            <% if group_chat.chat_image.attached? %>
+              <div class="message-image mt-2">
+                <%= image_tag group_chat.chat_image.variant(resize_to_limit: [300, 300]).processed, class: 'img-fluid' %>
+              </div>
+            <% end %>
+
+            <%= link_to "Delete", admin_group_group_chat_path(@group, group_chat), method: :delete, data: { confirm: "本当に削除しますか?" }, class: "btn btn-danger btn-sm mt-2" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+

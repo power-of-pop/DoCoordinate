@@ -19,9 +19,20 @@ Rails.application.routes.draw do
   namespace :admin do
     get '/' => 'homes#top'
 
+    # チャット画面
+    get "groups/:id/chat" => "groups#chat", as: :group_chat
+
     resources :users, only: [:index, :show, :destroy]
     resources :posts do
       resources :post_comments, only: [:create, :destroy]
+    end
+    resources :groups, only: [:index, :show, :destroy] do
+      resource :group_users, only: [:create, :destroy] do
+        member do
+          post 'reject'
+        end
+      end
+      resources :group_chats, only: [:destroy]
     end
   end
 
