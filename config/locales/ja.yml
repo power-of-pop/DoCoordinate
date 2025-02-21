@@ -12,6 +12,10 @@ ja:
         post_image: "写真"
         title: "タイトル"
         body: "説明文"
+      post_comment:
+        comment: "コメント"
+      group_chat:
+        comment: "文字"
   errors:
     format: "%{attribute}%{message}"
   date:
