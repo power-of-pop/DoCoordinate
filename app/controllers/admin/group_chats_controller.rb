@@ -1,5 +1,6 @@
 class Admin::GroupChatsController < ApplicationController
   before_action :authenticate_admin!
+  before_action :set_group
 
 
   def destroy
@@ -8,6 +9,10 @@ class Admin::GroupChatsController < ApplicationController
   end
 
   private
+
+  def set_group
+    @group = Group.find(params[:group_id]) # グループIDをパラメータから取得
+  end
 
   def group_chat_params
     params.require(:group_chat).permit(:comment, :chat_image)
