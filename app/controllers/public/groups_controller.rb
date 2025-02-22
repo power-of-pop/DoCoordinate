@@ -1,5 +1,6 @@
 class Public::GroupsController < ApplicationController
   before_action :authenticate_user!
+  before_action :ensure_guest_user, only: [:new, :create, :edit, :update, :destroy, :permits]
   before_action :ensure_correct_user, only: [:edit, :update, :destroy, :permits]
 
   def index
@@ -17,6 +18,12 @@ class Public::GroupsController < ApplicationController
   def create
     @group = Group.new(group_params)
     @group.owner_id = current_user.id
+
+    if current_user.email == "guest@example.com"
+      redirect_to group_path(@group) , notice: "ゲストユーザーの操作は制限されています。"
+      return
+    end
+
     if @group.save
       GroupUser.create(user_id: current_user.id, group_id: @group.id)
       redirect_to groups_path, method: :post
@@ -70,6 +77,13 @@ class Public::GroupsController < ApplicationController
     @group = Group.find(params[:id])
     unless @group.owner_id = current_user.id
       redirect_to group_path(@group), alert: "作成者のみ編集が可能です。"
+    end
+  end
+
+  def ensure_guest_user
+    @user = current_user
+    if @user.email == "guest@example.com"
+      redirect_to groups_path , notice: "ゲストユーザーの操作は制限されています。"
     end
   end
 end

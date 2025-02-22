@@ -1,6 +1,6 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_user!, except: [:top, :about]
-  before_action :correct_user, only: [:edit]
+  before_action :ensure_guest_user, only: [:create, :edit, :update, :destroy]
 
   def new
     @post = Post.new
@@ -9,7 +9,7 @@ class Public::PostsController < ApplicationController
   def index
     @posts = Post.all
     @post = Post.new
-    @users = @users = User.all
+    @users = User.all
     @user = current_user
   end
 
@@ -69,9 +69,10 @@ class Public::PostsController < ApplicationController
     params.require(:post).permit(:title, :body, :post_image)
   end
 
-  def correct_user
-    @post = Post.find_by(id: params[:id])
-    redirect_to posts_path if @post.nil? || @post.user != current_user
+  def ensure_guest_user
+    @user = current_user
+    if @user.email == "guest@example.com"
+      redirect_to new_post_path , notice: "ゲストユーザーの操作は制限されています。"
+    end
   end
-
 end
