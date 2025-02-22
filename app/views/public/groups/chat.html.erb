@@ -22,7 +22,7 @@
             </div>
             <% if group_chat.comment.present? %>
               <div class="message-text bg-light p-2 rounded mt-1">
-                <%= group_chat.comment %>
+                <%= simple_format(group_chat.comment) %>
               </div>
             <% end %>
 
@@ -43,9 +43,9 @@
     </div>
 
       <!--メッセージ入力フォーム-->
-    <%= form_with(model: [@group, @group_chat], class: "input-area d-flex") do |f| %>
-      <div class="row">
-        <div class="col-12 col-md-8">
+    <%= form_with(model: [@group, @group_chat]) do |f| %>
+      <div>
+        <div>
           <div class="input-group">
             <%= f.text_area :comment, rows: 3, class: "form-control", placeholder: "コメント..." %>
           </div>
