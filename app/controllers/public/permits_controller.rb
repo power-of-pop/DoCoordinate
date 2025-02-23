@@ -1,6 +1,6 @@
 class Public::PermitsController < ApplicationController
   before_action :authenticate_user!
-  before_action :ensure_guest_user, only: [:create, :destroy]
+  #before_action :ensure_guest_user, only: [:create, :destroy]
 
   def create
     @group = Group.find(params[:group_id])

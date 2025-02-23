@@ -1,60 +1,64 @@
 <div class='container px-5 px-sm-0'>
-  <div class='row'>
-    <div class='col-md-10'>
-      <h2>Group Detail</h2>
-      <table class='table table-inverse'>
-        <thead>
-          <tr>
-            <th>Image</th>
-            <th>Name</th>
-            <th>Introduction</th>
-            <th>Members</th>
-            <th colspan="3"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <%= image_tag url_for(@group.group_image), size: "150x150" %>
-            </td>
-            </td>
-            <td><%= @group.name %></td>
-            <td><%= @group.introduction %></td>
-            <td>
-              <% @group.users.each do |user| %>
-                <li style="list-style: none;"><%= user.name %></li>
-              <% end %>
-            </td>
-            <td>
-              <% if @group.group_users.exists?(user_id: current_user.id) %>
-                <%= link_to 'グループ退出', group_group_users_path(@group), method: :delete, class: "btn btn-sm btn-danger", data: { confirm: "本当にグループを退出しますか？" } %>
-              <% elsif @group.permits.exists?(user_id: current_user.id) %>
-                <%= link_to '申請取消', group_permits_path(@group), method: :delete, class: "btn btn-sm btn-danger" %>
-              <% else %>
-                <%= link_to '参加申請', group_permits_path(@group), method: :post, class: "btn btn-sm btn-success" %>
-              <% end %>
+  <div class="row d-flex justify-content-center">
+    <div class="col-10">
+      <div class="card mb-4">
+        <div class="row no-gutters">
+          <!-- グループ画像 -->
+          <div class="col-md-3">
+            <img src="<%= url_for(@group.group_image) %>" class="card-img" alt="<%= @group.name %>" style="object-fit: contain; width: 100%; height: 100%; max-height: 200px;">
+          </div>
+          <div class="col-md-9">
+            <div class="card-body">
+              <h2 class="card-title"><%= @group.name %></h2>
+              <p class="card-text"><%= @group.introduction %></p>
+            </div>
+          </div>
+        </div>
+      </div>
 
+      <!-- メンバーリスト -->
+      <div class="mb-4">
+        <h4>Member</h4>
+        <div class="d-flex flex-wrap">
+          <% @group.users.each do |user| %>
+            <div class="d-flex align-items-center mr-3 mb-2">
+              <span><%= image_tag url_for(user.profile_image), size: "40x40" %></span>
+              <span class="ml-2"><%= user.name %></span>
+            </div>
+          <% end %>
+        </div>
+      </div>
 
-              <% if @group.owner_id == current_user.id %>
-                  <div class="dropdown">
-                  <button class="btn btn-sm btn-secondary dropdown-toggle"
-                          type="button" id="dropdownMenu1" data-toggle="dropdown"
-                          aria-haspopup="true" aria-expanded="false">
-                    作成者専用
-                  </button>
-                  <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <%= link_to "承認待ち一覧", permits_path(@group),  class: "dropdown-item text-secondary bg-transparent" %>
-                    <%= link_to 'グループ編集', edit_group_path(@group),  class: "dropdown-item text-success bg-transparent" %>
-                    <%= link_to 'グループ削除', group_path(@group), method: :delete,  class: "dropdown-item text-danger bg-transparent", data: { confirm: "本当に削除しますか？" } %>
-                  </div>
-                </div>
-              <% end %>
+      <!-- アクションボタン -->
+      <div class="d-flex justify-content-between">
+        <div>
+          <% if @group.group_users.exists?(user_id: current_user.id) %>
+            <%= link_to '退出', group_group_users_path(@group), method: :delete, class: "btn btn-danger", data: { confirm: "本当にグループを退出しますか？" } %>
+          <% elsif @group.permits.exists?(user_id: current_user.id) %>
+            <%= link_to '申請取消', group_permits_path(@group), method: :delete, class: "btn btn-danger" %>
+          <% else %>
+            <%= link_to '参加申請', group_permits_path(@group), method: :post, class: "btn btn-success" %>
+          <% end %>
 
-              <% if @group.group_users.exists?(user_id: current_user.id) %>
-                <%= link_to "チャット",group_chat_path(@group), class: "btn btn-outline-dark text-dark" %>
-              <% end %>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+          <% if @group.group_users.exists?(user_id: current_user.id) %>
+            <%= link_to "Group Chat!", group_chat_path(@group), class: "btn btn-warning text-white ml-2" %>
+          <% end %>
+        </div>
+
+        <!-- グループオーナー専用ボタン -->
+        <% if @group.owner_id == current_user.id %>
+          <div class="dropdown">
+            <button class="btn btn-1g btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              作成者専用
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <%= link_to "承認待ち一覧", permits_path(@group), class: "dropdown-item text-secondary bg-transparent" %>
+              <%= link_to 'グループ編集', edit_group_path(@group), class: "dropdown-item text-success bg-transparent" %>
+              <%= link_to 'グループ削除', group_path(@group), method: :delete, class: "dropdown-item text-danger bg-transparent", data: { confirm: "本当に削除しますか？" } %>
+            </div>
+          </div>
+        <% end %>
+      </div>
     </div>
+  </div>
+</div>

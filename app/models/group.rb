@@ -10,7 +10,6 @@ class Group < ApplicationRecord
 
   validates :name, presence: true
   validates :introduction, presence: true
-  validates :group_image, presence: true, blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg', 'image/webp'], size_range: 1..(5.megabytes) }
 
   def get_group_image(width,height)
     unless group_image.attached?
