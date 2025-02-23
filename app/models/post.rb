@@ -6,6 +6,7 @@ class Post < ApplicationRecord
   validates :post_image, presence: true
   validates :title, presence: true
   validates :body, presence: true
+  validates :post_image, presence: true, blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg', 'image/webp'], size_range: 1..(5.megabytes) }
 
   def get_post_image(width,height)
     unless post_image.attached?

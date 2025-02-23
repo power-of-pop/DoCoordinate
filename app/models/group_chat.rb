@@ -5,6 +5,7 @@ class GroupChat < ApplicationRecord
   has_one_attached :chat_image
 
   validates :comment, presence: true
+  validates :chat_image, presence: true, blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg', 'image/webp'], size_range: 1..(5.megabytes) }
 
 
   def get_chat_image(width,height)

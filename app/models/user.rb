@@ -15,7 +15,7 @@ class User < ApplicationRecord
   has_many   :groups,           through: :group_users
   has_many :group_chats,        dependent: :destroy
 
-
+  validates :profile_image, presence: true, blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg', 'image/webp'], size_range: 1..(5.megabytes) }
 
   def get_profile_image(width,height)
     unless profile_image.attached?
