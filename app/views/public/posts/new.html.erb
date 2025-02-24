@@ -2,7 +2,7 @@
 
   <div class = "row">
     <div class = "col-sm-12 col-md-6 col-lg-5 px-5 px-sm-0 mx-auto">
-      <span class = "title" style="font-size: 2rem;"> New Coordinate </span><br>
+      <span class = "title" style="font-size: 2rem;"> New Post </span><br>
 
       <%= form_with(model: @post, url: posts_path) do |form| %>
       <%= render 'layouts/errors', obj: @post %>
@@ -23,7 +23,7 @@
         </div>
         <br>
         <div class = "submit row justify-content-center">
-          <%= form.submit "Post!", class: "btn btn-success" %>
+          <%= form.submit "Post!", class: "btn btn-info" %>
         </div>
       <% end %>
       <br>

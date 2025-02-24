@@ -17,7 +17,7 @@
               <td>
                 <%= image_tag group.get_group_image(100,100) %>
               </td>
-              <td><%= link_to group.name,admin_group_path(group) %></td>
+              <td><%= link_to group.name,admin_group_path(group), class: "h5" %></td>
               <td><%= group.group_users.count %></td>
             </tr>
           <% end %>

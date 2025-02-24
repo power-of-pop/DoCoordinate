@@ -15,14 +15,10 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find_by(id: params[:id])
-    if @post.nil?
-      redirect_to posts_path
-    else
-      @posts = Post.all
-      @users = User.all
-      @user = @post.user
-      @post_comment = PostComment.new
-    end
+    @posts = Post.all
+    @users = User.all
+    @user = @post.user
+    @post_comment = PostComment.new
   end
 
   def create

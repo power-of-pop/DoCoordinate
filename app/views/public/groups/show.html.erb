@@ -9,7 +9,7 @@
           </div>
           <div class="col-md-9">
             <div class="card-body">
-              <h2 class="card-title"><%= @group.name %></h2>
+              <h3 class="card-title"><%= @group.name %></h3>
               <p class="card-text"><%= @group.introduction %></p>
             </div>
           </div>
@@ -41,7 +41,7 @@
           <% end %>
 
           <% if @group.group_users.exists?(user_id: current_user.id) %>
-            <%= link_to "Group Chat!", group_chat_path(@group), class: "btn btn-warning text-white ml-2" %>
+            <%= link_to "Group Chat!", group_chat_path(@group), class: "btn btn-info text-white ml-2" %>
           <% end %>
         </div>
 
