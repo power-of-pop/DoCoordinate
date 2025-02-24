@@ -11,7 +11,7 @@
   </head>
 
   <body class="d-flex flex-column vh-100">
-    <header class="shadow-sm"  style="background-image: url('<%= asset_path("pexels-apasaric-1323712.jpg") %>'); background-size: cover; background-position: center center;">
+    <header class="shadow-sm"  style="background-image: url('<%= asset_path("pexels-apasaric-1323712.jpg") %>'); background-size: 120%; background-position: left center;">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
           <a class="navbar-brand p-3" href="/"><span><%= image_tag 'S__46997507.jpg', size: "60x60" %></span></a>
@@ -21,13 +21,6 @@
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
               <% if admin_signed_in?  %>
-                <%
-=begin%>
- <li class="nav-item mr-5">
-                  <%= link_to 'Top Page', admin_path, class: 'btn btn-dark' %>
-                </li> 
-<%
-=end%>
                 <li class="nav-item mr-5">
                   <%= link_to 'User List', admin_users_path, class: 'btn btn-dark' %>
                 </li>
