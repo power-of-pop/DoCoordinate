@@ -11,7 +11,7 @@
   </head>
 
   <body class="d-flex flex-column vh-100">
-    <header class="shadow-sm"  style="background-image: url('<%= asset_path("pexels-apasaric-1323712.jpg") %>'); background-size: 120%; background-position: left center;">
+    <header class="shadow-sm bg-image" style="position: relative; background-image: url('<%= asset_path('pexels-ron-lach-8274720.jpg') %>'); background-size: cover; background-position: 10% 15%;">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
           <a class="navbar-brand p-3" href="/"><span><%= image_tag 'S__46997507.jpg', size: "60x60" %></span></a>
@@ -67,16 +67,15 @@
         </div>
       </nav>
     </header>
-    <main class="mb-auto">
-      <div class="d-flex justify-content-center mb-2" ></div>
+    <main style="height: 100vh; display: flex; flex-direction: column;">
       <%= render "layouts/flash_messages" %>
-      <div class="d-flex justify-content-center mb-2" >
+      <div class="d-flex justify-content-center" >
         <%= render 'searches/form' %>
       </div>
       <%= yield %>
     </main>
-    <footer class="bg-dark text-white pt-1 pb-4">
-      <div class="container mt-5">
+    <footer class="bg-dark text-white pt-2 pb-2" style="margin-top: auto;">
+      <div class="container mt-3">
         <div class="row">
           <div class="mx-auto">
             <h5>Let's enjoy fashion!</h5>
