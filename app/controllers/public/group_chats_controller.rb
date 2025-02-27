@@ -7,12 +7,14 @@ class Public::GroupChatsController < ApplicationController
     @group_chat = current_user.group_chats.new(group_chat_params)
     @group_chat.group_id = @group.id
 
-    if @group_chat.save
+    if @group_chat.comment.blank?
+      redirect_to group_chat_path(@group), alert: 'メッセージを入力してください。'
+    elsif @group_chat.save
       redirect_to group_chat_path(@group), notice: '送信されました。'
     else
-      @group_chats = @group.group_chats.includes(:user).order(created_at: :asc)
-      render "public/groups/chat"
+      redirect_to group_chat_path(@group), alert: 'メッセージの送信に失敗しました。'
     end
+
   end
 
 

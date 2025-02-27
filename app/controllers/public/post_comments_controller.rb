@@ -5,13 +5,12 @@ class Public::PostCommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @post_comment = current_user.post_comments.new(post_comment_params)
     @post_comment.post_id = @post.id
-    if @post_comment.save
+    if @post_comment.comment.blank?
+      redirect_to post_path(@post), alert: 'コメントを入力してください。'
+    elsif @post_comment.save
       redirect_to post_path(@post), notice: '送信されました。'
     else
-      @posts = Post.all
-      @users = User.all
-      @user = @post.user
-      render "public/posts/show"
+      redirect_to post_path(@post), alert: 'コメントの送信に失敗しました。'
     end
 
   end

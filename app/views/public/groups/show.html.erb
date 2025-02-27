@@ -33,7 +33,7 @@
       <div class="d-flex justify-content-between">
         <div>
           <% if @group.group_users.exists?(user_id: current_user.id) %>
-            <%= link_to '退出', group_group_users_path(@group), method: :delete, class: "btn btn-danger", data: { confirm: "本当にグループを退出しますか？" } %>
+            <%= link_to '退出　', group_group_users_path(@group), method: :delete, class: "btn btn-danger", data: { confirm: "本当にグループを退出しますか？" } %>
           <% elsif @group.permits.exists?(user_id: current_user.id) %>
             <%= link_to '申請取消', group_permits_path(@group), method: :delete, class: "btn btn-danger" %>
           <% else %>
@@ -41,14 +41,14 @@
           <% end %>
 
           <% if @group.group_users.exists?(user_id: current_user.id) %>
-            <%= link_to "Group Chat!", group_chat_path(@group), class: "btn btn-info text-white ml-2" %>
+            <%= link_to "Chat Room", group_chat_path(@group), class: "btn btn-info text-white ml-2" %>
           <% end %>
         </div>
 
         <!-- グループオーナー専用ボタン -->
         <% if @group.owner_id == current_user.id %>
           <div class="dropdown">
-            <button class="btn btn-1g btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button class="btn btn-1g btn-dark dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               作成者専用
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenu1">

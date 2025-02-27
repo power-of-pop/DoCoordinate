@@ -18,7 +18,7 @@ ja:
         name: "名前"
         introduction: "説明文"
       group_chat:
-        comment: "文字"
+        comment: "メッセージ"
   errors:
     format: "%{attribute}%{message}"
   date:
