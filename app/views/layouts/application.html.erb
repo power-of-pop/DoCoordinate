@@ -18,8 +18,8 @@
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav ml-auto">
+          <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+            <ul class="navbar-nav d-flex flex-row ml-auto">
               <% if admin_signed_in?  %>
                 <li class="nav-item mr-5">
                   <%= link_to 'User List', admin_users_path, class: 'btn btn-dark' %>

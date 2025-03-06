@@ -26,6 +26,7 @@ class Public::GroupsController < ApplicationController
 
     if @group.save
       GroupUser.create(user_id: current_user.id, group_id: @group.id)
+      flash[:notice] = "コミュニティが作成されました。"
       redirect_to groups_path, method: :post
     else
       render :new
