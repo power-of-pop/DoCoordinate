@@ -1,6 +1,6 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!, except: [:top, :about]
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :favorites]
   before_action :ensure_guest_user, only: [:edit]
 
   def show
@@ -25,12 +25,16 @@ class Public::UsersController < ApplicationController
     redirect_to new_user_registration_path
   end
 
+  def favorites
+    favorites_post_ids = Favorite.where(user_id: @user.id).pluck(:post_id)
+    @posts = Post.where(id: favorites_post_ids)
+  end
+
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :profile, :profile_image, :introduction)
   end
 
   private
-
 
   def ensure_guest_user
     @user = User.find(params[:id])

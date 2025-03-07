@@ -47,7 +47,11 @@ Rails.application.routes.draw do
     # チャット画面
     get "groups/:id/chat" => "groups#chat", as: :group_chat
 
-    resources :users, only: [:edit, :show, :update, :destroy]
+    resources :users, only: [:edit, :show, :update, :destroy] do
+      member do
+        get :favorites
+      end
+    end
     resources :posts do
       resources :post_comments, only: [:create, :destroy]
       resource :favorite, only: [:create, :destroy]
