@@ -18,9 +18,12 @@
                     <%= image_tag url_for(post.post_image), size: "200x300" %>
                   <% end %>
                 </p>
-                <p><%= link_to truncate(post.title, length: 15, omission: '...'), post_path(post) %></p>
                 <!-- 15文字を超えた場合は「...」を付ける -->
-                <p><%= link_to "#{post.post_comments.count} コメント", post_path(post.id) %></p>
+                <p><%= link_to truncate(post.title, length: 15, omission: '...'), post_path(post) %></p>
+                <p>
+                  <%= link_to "#{post.favorites.count} いいね", post_path(post.id) %>
+                  <%= link_to "#{post.post_comments.count} コメント", post_path(post.id) %>
+                </p>
               </div>
             <% end %>
           </div>

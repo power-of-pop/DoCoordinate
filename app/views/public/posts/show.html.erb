@@ -29,8 +29,21 @@
           <% end %>
         </tbody>
       </table>
+      
       <div>
-        <%= link_to 'Back', posts_path, class: "back" %>
+        <% if @post.favorited_by?(current_user) %>
+          <p>
+            <%= link_to post_favorite_path(@post), method: :delete do %>
+              🩷<%= @post.favorites.count %> いいね
+            <% end %>
+          <p>
+        <% else %>
+          <p>
+            <%= link_to post_favorite_path(@post), method: :post do %>
+              ♡<%= @post.favorites.count %> いいね
+            <% end %>
+          <p>
+        <% end %>
       </div>
 
       <!-- 投稿コメント -->
@@ -64,7 +77,10 @@
             <%= f.submit "Send", class: "btn btn-info" %>
           </div>
         <% end %>
+      </div>
 
+      <div>
+        <%= link_to 'Back', posts_path, class: "back" %>
       </div>
     </div>
   </div>

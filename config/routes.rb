@@ -50,6 +50,7 @@ Rails.application.routes.draw do
     resources :users, only: [:edit, :show, :update, :destroy]
     resources :posts do
       resources :post_comments, only: [:create, :destroy]
+      resource :favorite, only: [:create, :destroy]
     end
     resources :groups, only: [:new, :index, :show, :edit, :create, :update, :destroy] do
       resource :permits, only: [:create, :destroy]
