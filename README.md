@@ -21,9 +21,9 @@ README
 - 気に入ったコーディネート例があり、誰かに共有したい時
 
 ## 設計書
-# ER図
+### ER図
 https://app.diagrams.net/#G1C1jdgQqF1JVTu0Tmtya0LqntGUk2udT0#%7B%22pageId%22%3A%22LkA-50vI9zVlM_wPANrl%22%7D
-# 機能一覧
+### 機能一覧
 - ユーザー側
   - 新規登録、退会、ログイン、ログアウト機能
   - マイページ閲覧、編集機能
