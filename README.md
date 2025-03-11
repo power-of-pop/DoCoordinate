@@ -23,6 +23,7 @@ README
 ## 設計書
 ### ER図
 https://app.diagrams.net/#G1C1jdgQqF1JVTu0Tmtya0LqntGUk2udT0#%7B%22pageId%22%3A%22LkA-50vI9zVlM_wPANrl%22%7D
+
 ### 機能一覧
 - ユーザー側
   - 新規登録、退会、ログイン、ログアウト機能
@@ -42,6 +43,9 @@ https://app.diagrams.net/#G1C1jdgQqF1JVTu0Tmtya0LqntGUk2udT0#%7B%22pageId%22%3A%
   - グループ一覧表示、削除機能
   - グループチャットコメント削除機能
   - 検索機能
+
+### AWS 構成図
+https://drive.google.com/file/d/1wRX_5rUO-riVNqG4hi1x9t8LnHQiuY3C/view?usp=sharing
 
 ## 開発環境
 - OS：Linux(CentOS)
