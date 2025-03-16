@@ -1,13 +1,13 @@
-<div style="overflow: hidden; height: 78vh; display: flex; flex-direction: column; background-image: url('<%= asset_path("pexels-zsofia-feher-685822-14481421.jpg") %>'); background-size: cover; background-position: 10% 30%;">
+<div style="overflow: hidden; height: 85vh; display: flex; flex-direction: column; background-image: url('<%= asset_path("pexels-zsofia-feher-685822-14481421.jpg") %>'); background-size: cover; background-position: 10% 30%;">
   <h1 class='mt-5 mx-auto text-center text-white' style="font-size: 4em;">welcome to <strong>Do Coordinate</strong> !</h1>
   <div class='mx-auto text-center col-11 col-sm-10 col-lg-8 col-xl-6'>
     <h2 class="mb-5 mr-4 text-white">Let's talk about fashion.</h2>
 
       <div class="row mt-5 mb-3 d-flex justify-content-center">
-        <%= link_to "Guest log in", public_guest_sign_in_path, class: "btn btn-warning btn-sm btn-block mb-3 sign_in", style: "width: 60%;", method: :post %>
+        <%= link_to "Guest log in", public_guest_sign_in_path, class: "btn btn-warning btn-sm btn-block mb-2 sign_in", style: "width: 60%;", method: :post %>
       </div>
       <div class="row mb-3 d-flex justify-content-center">
-        <%= link_to 'Log in',new_user_session_path, class: "btn btn-info btn-sm btn-block mb-3 sign_in", style: "width: 60%;" %>
+        <%= link_to 'Log in',new_user_session_path, class: "btn btn-info btn-sm btn-block mb-2 sign_in", style: "width: 60%;" %>
       </div>
       <div class="row mb-3 d-flex justify-content-center">
         <%= link_to 'Sign up',new_user_registration_path, class: "btn btn-success btn-sm btn-block sign_up", style: "width: 60%;" %>
