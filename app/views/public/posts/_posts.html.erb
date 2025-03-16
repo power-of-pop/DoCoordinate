@@ -1,20 +1,22 @@
-<div class="row">
-  <% posts.each_slice(5) do |posts_row| %>
-    <div class="row">
+<div class="container-fluid">
+<div class="row ms-auto me-auto">
+  <% posts.each_slice(6) do |posts_row| %>
+    <div class="row ms-auto me-auto">
       <% posts_row.each do |post| %>
-        <div class="col">
+        <div class="col-lg-2 col-md-3 col-4 text-center">
           <p>
             <%= link_to post_path(post.id) do %>
-              <%= image_tag url_for(post.post_image), size: "200x300" %>
+              <%= image_tag url_for(post.post_image), class: "img-fluid" %>
             <% end %>
           </p>
           <p><%= link_to truncate(post.title, length: 15, omission: '...'), post_path(post) %></p>
           <p>
-            <%= "#{post.favorites.count} いいね" %>
+            <%= "#{post.favorites.count} いいね" %><br>
             <%= "#{post.post_comments.count} コメント" %>
           </p>
         </div>
       <% end %>
     </div>
   <% end %>
+</div>
 </div>
