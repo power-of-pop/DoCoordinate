@@ -5,7 +5,7 @@
         <% posts_row.each do |post| %>
           <div class="col-lg-2 col-md-3 col-4 text-center">
             <p>
-              <%= link_to post_path(post.id) do %>
+              <%= link_to admin_post_path(post.id) do %>
                 <%= image_tag url_for(post.post_image), class: "img-fluid" %>
               <% end %>
             </p>
