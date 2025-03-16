@@ -2,10 +2,10 @@
 <div class="container px-5 px-sm-0">
 <h2>Post details</h2>
   <div class="row">
-    <div class="col-5">
-        <%= image_tag url_for(@post.post_image), size: "300x450" %>
+    <div class="col-md-5 col-12 mb-5 text-center">
+        <%= image_tag url_for(@post.post_image), class: "img-fluid w-75" %>
     </div>
-    <div class="col-7">
+    <div class="col-md-7 col-12">
       <table class='table'>
         <tbody>
           <tr>
