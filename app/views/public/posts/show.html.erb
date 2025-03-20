@@ -30,12 +30,14 @@
         </tbody>
       </table>
 
+      <!-- タグ表示 -->
       <div class="mb-3">
         <% @post.tags.each do |tag| %>
           <span class="badge bg-info text-white me-3"><%= tag.name %></span>
         <% end %>
       </div>
       
+      <!-- いいね -->
       <div>
         <% if @post.favorited_by?(current_user) %>
           <p>

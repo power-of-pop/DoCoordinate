@@ -27,6 +27,14 @@
 
         </tbody>
       </table>
+
+      <!-- タグ表示 -->
+      <div class="mb-3">
+        <% @post.tags.each do |tag| %>
+          <span class="badge bg-info text-white me-3"><%= tag.name %></span>
+        <% end %>
+      </div>
+
       <div>
         <%= @post.favorites.count %> いいね
         <p>コメント件数：<%= @post.post_comments.count %></p>
