@@ -23,12 +23,12 @@ class Public::PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    # tags = Vision.get_image_data(post_params[:post_image])
+    tags = Vision.get_image_data(post_params[:post_image])
     @post.user_id = current_user.id
     if @post.save
-      # tags.each do |tag|
-      #   @post.tags.create(name: tag)
-      # end
+      tags.each do |tag|
+        @post.tags.create(name: tag)
+      end
       flash[:notice] = "正常に投稿されました。"
       redirect_to post_path(@post)
     else
