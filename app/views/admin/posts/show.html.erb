@@ -16,7 +16,11 @@
             <th class="border-bottom text-wrap text-break"><%= @post.title %></th>
           </tr>
           <tr>
-            <th class="border-bottom text-wrap text-break"><%= @post.body %></th>
+            <th class="border-bottom text-wrap text-break"><%= simple_format(@post.body, sanitize: true) %></th>
+          </tr>
+
+          <tr>
+            <td class="border-bottom text-wrap text-break"><%= @post.created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
           </tr>
 
           <tr>
@@ -45,8 +49,8 @@
               <%= link_to post_comment.user.name, admin_user_path(@user) %>
             </div>
             <div class="col-6">
-              <%= post_comment.created_at.strftime('%Y/%m/%d') %><br>
-              <%= post_comment.comment %>
+              <%= simple_format(post_comment.comment) %>
+              <%= post_comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
             </div>
             <div>
               <%= link_to "delete", admin_post_post_comment_path(post_comment.post, post_comment), method: :delete, data: { confirm: "本当に消去しますか？" }, class: "btn btn-danger" %>
