@@ -4,7 +4,7 @@ class Public::UsersController < ApplicationController
   before_action :ensure_guest_user, only: [:edit]
 
   def show
-    @posts = @user.posts
+    @posts = @user.posts.order(created_at: :desc)
   end
 
   def edit; end
@@ -27,7 +27,7 @@ class Public::UsersController < ApplicationController
 
   def favorites
     favorites_post_ids = Favorite.where(user_id: @user.id).pluck(:post_id)
-    @posts = Post.where(id: favorites_post_ids)
+    @posts = Post.where(id: favorites_post_ids).order(created_at: :desc)
   end
 
   def user_params
