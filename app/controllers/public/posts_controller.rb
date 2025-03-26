@@ -23,8 +23,15 @@ class Public::PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    tags = Vision.get_image_data(post_params[:post_image])
     @post.user_id = current_user.id
+
+    # 画像がある場合のみvision apiを呼び出す
+    if post_params[:post_image].present?
+      tags = Vision.get_image_data(post_params[:post_image])
+    else
+      tags = []
+    end
+
     if @post.save
       tags.each do |tag|
         @post.tags.create(name: tag)
