@@ -1,0 +1,30 @@
+.pagination {
+  list-style: none;
+  padding: 0;
+  margin-top: 15px;
+}
+
+.pagination .page-item {
+  margin: 0 5px; /* 各ページ番号の間隔 */
+}
+
+.pagination .page-item .page-link {
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #555;
+  background-color: #f8f9fa;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #333333;
+  color: white;
+  border: 1px solid #333333;
+}
+
+.pagination .page-item .page-link:hover {
+  background-color: #333333;
+  color: white;
+}

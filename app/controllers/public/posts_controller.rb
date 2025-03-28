@@ -7,7 +7,7 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all.order(created_at: :desc)
+    @posts = Post.all.order(created_at: :desc).page(params[:page])
     @post = Post.new
     @users = User.all
     @user = current_user
