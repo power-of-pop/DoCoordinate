@@ -22,7 +22,7 @@
             </div>
             <% if group_chat.comment.present? %>
               <div class="message-text bg-light p-2 rounded mt-1">
-                <%= group_chat.comment %>
+                <%= simple_format(group_chat.comment, sanitize: true) %>
               </div>
             <% end %>
 
