@@ -14,7 +14,7 @@
           <div class="message-content flex-grow-1">
             <div class="d-flex justify-content-between">
               <div class="user-name fw-bold">
-                <%= link_to group_chat.user.name, admin_user_path(@user) %>
+                <%= link_to group_chat.user.name, admin_user_path(group_chat.user) %>
               </div>
               <div class="message-time text-muted small">
                 <%= group_chat.created_at.strftime('%Y/%m/%d %H:%M') %>
